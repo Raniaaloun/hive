@@ -1,0 +1,24 @@
+{
+  "name": "hive",
+  "version": "1.0.0",
+  "main": "index.js",
+  "packageManager": "npm@10.9.2",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Raniaaloun/hive.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Raniaaloun/hive/issues"
+  },
+  "homepage": "https://github.com/Raniaaloun/hive#readme",
+  "description": "",
+  "devDependencies": {
+    "turbo": "^2.5.0"
+  }
+}
