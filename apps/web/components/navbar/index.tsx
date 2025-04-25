@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { Button, NavbarContainer, Title } from './styles';
 import { useAuth } from '@/context/auth-provider';
 import Dropdown from '@/components/dropdown';
@@ -14,7 +15,9 @@ export default function Navbar() {
 
   return (
     <NavbarContainer>
-      <Title>The Hive</Title>
+      <Link href="/" passHref>
+        <Title>The Hive</Title>
+      </Link>
 
       {isAuthenticated ? (
         <Dropdown />
