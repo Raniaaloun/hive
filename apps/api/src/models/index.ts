@@ -1,5 +1,6 @@
-import { Sequelize, Dialect } from "sequelize";
-import * as config from '../config/config.json';  // Import the config.json directly
+import { Sequelize, Dialect } from 'sequelize';
+import * as config from '../config/config.json';
+import { Post, initPostModel } from './post-model';
 
 interface DBConfig {
   username: string;
@@ -9,7 +10,7 @@ interface DBConfig {
   dialect: Dialect;
 }
 
-const dbConfig: DBConfig = config as DBConfig;
+const dbConfig = (config as any) as DBConfig;
 
 const sequelize = new Sequelize(
   dbConfig.database,
@@ -18,8 +19,9 @@ const sequelize = new Sequelize(
   {
     host: dbConfig.host,
     dialect: dbConfig.dialect,
-    logging: true,
   }
 );
 
-export default sequelize;
+initPostModel(sequelize);
+
+export { sequelize, Post };

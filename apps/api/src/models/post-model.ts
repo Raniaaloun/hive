@@ -1,15 +1,15 @@
-import { Model, DataTypes, Sequelize } from 'sequelize'; // Import Sequelize and DataTypes from sequelize
+import { Model, DataTypes, Sequelize } from 'sequelize';
 
-export default (sequelize: Sequelize) => {
-  class Post extends Model {
-    public id!: string;
-    public title!: string;
-    public content!: string;
-    public userId!: string;
-    public created!: Date;
-    public updated!: Date;
-  }
+export class Post extends Model {
+  public id!: string;
+  public title!: string;
+  public content!: string;
+  public userId!: string;
+  public createdAt!: Date;
+  public updatedAt!: Date;
+}
 
+export const initPostModel = (sequelize: Sequelize) => {
   Post.init(
     {
       id: {
@@ -29,12 +29,12 @@ export default (sequelize: Sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      created: {
+      createdAt: {
         type: DataTypes.DATE,
         allowNull: false,
         defaultValue: DataTypes.NOW,
       },
-      updated: {
+      updatedAt: {
         type: DataTypes.DATE,
         allowNull: false,
         defaultValue: DataTypes.NOW,
@@ -44,8 +44,7 @@ export default (sequelize: Sequelize) => {
       sequelize,
       modelName: 'Post',
       timestamps: true,
+      tableName: 'posts'
     }
   );
-
-  return Post;
 };
