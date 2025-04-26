@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const Modal = styled.div`
+export const ModalWrapper = styled.div`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
   bottom: 0;

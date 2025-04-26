@@ -8,6 +8,9 @@ import {
   Info,
   SkeletonLine,
   Title,
+  ButtonGroup,
+  EditButton,
+  DeleteButton,
 } from "./styles";
 
 interface PostCardProps {
@@ -16,9 +19,22 @@ interface PostCardProps {
   title?: string;
   content?: string;
   loading?: boolean;
+  onEdit?: () => void;
+  onDelete?: () => void;
+  canEditOrDelete?: boolean;
 }
 
-const PostCard: React.FC<PostCardProps> = ({ userId, id, title, content, loading }) => {
+const PostCard: React.FC<PostCardProps> = ({
+  userId,
+  id,
+  title,
+  content,
+  loading,
+  onEdit,
+  onDelete,
+  canEditOrDelete
+}) => {
+
   if (loading) {
     return (
       <Card>
@@ -46,6 +62,13 @@ const PostCard: React.FC<PostCardProps> = ({ userId, id, title, content, loading
       </Header>
       <Title>{title}</Title>
       <Body>{content}</Body>
+
+      {canEditOrDelete && (
+        <ButtonGroup>
+          <EditButton onClick={onEdit}>Edit</EditButton>
+          <DeleteButton onClick={onDelete}>Delete</DeleteButton>
+        </ButtonGroup>
+      )}
     </Card>
   );
 };
