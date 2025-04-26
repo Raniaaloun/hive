@@ -8,8 +8,6 @@ import React, {
   useCallback,
 } from "react";
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
 interface Post {
   id: string;
   title: string;
@@ -52,7 +50,7 @@ export function APIProvider({ children }: { children: ReactNode }) {
   const fetchPosts = useCallback(async () => {
     try {
       setIsLoading(true);
-      const response = await fetch(`${apiUrl}/posts`);
+      const response = await fetch('/posts');
 
       if (!response.ok) {
         throw new Error(`${response.status} - Error fetching posts.`);
@@ -73,7 +71,7 @@ export function APIProvider({ children }: { children: ReactNode }) {
       setIsLoading(true);
       console.log('id: ', id);
 
-      const response = await fetch(`${apiUrl}/posts/${id}`);
+      const response = await fetch(`/posts/${id}`);
 
       console.log('response: ', response);
 
@@ -98,7 +96,7 @@ export function APIProvider({ children }: { children: ReactNode }) {
     async (post: Omit<Post, "id">, token: string) => {
       try {
         setIsLoading(true);
-        const response = await fetch(`${apiUrl}/posts`, {
+        const response = await fetch('/posts', {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -126,7 +124,7 @@ export function APIProvider({ children }: { children: ReactNode }) {
     async (id: string, updatedFields: Partial<Post>, token: string) => {
       try {
         setIsLoading(true);
-        const response = await fetch(`${apiUrl}/posts/${id}`, {
+        const response = await fetch('/posts/${id}', {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -154,7 +152,7 @@ export function APIProvider({ children }: { children: ReactNode }) {
     async (id: string, token: string) => {
       try {
         setIsLoading(true);
-        const response = await fetch(`${apiUrl}/posts/${id}`, {
+        const response = await fetch(`/posts/${id}`, {
           method: "DELETE",
           headers: {
             Authorization: `Bearer ${token}`,

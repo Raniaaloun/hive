@@ -1,4 +1,5 @@
 module.exports = {
+  // @ts-ignore
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("posts", {
       id: {
@@ -32,7 +33,8 @@ module.exports = {
     });
   },
 
-  async down(queryInterface, Sequelize) {
+  // @ts-ignore
+  async down(queryInterface) {
     await queryInterface.dropTable("posts");
   },
 };

@@ -44,3 +44,4 @@ docker-compose.override.yml
 # Others
 *.pid
 *.seed
+.vercel
