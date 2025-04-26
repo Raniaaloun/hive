@@ -12,7 +12,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:web": "turbo run dev --filter=web",
     "dev:api": "turbo run dev --filter=api",
-    "dev": "turbo run dev --parallel"
+    "dev": "turbo run dev --parallel",
+    "build:web": "turbo run build --filter=web",
+    "build:api": "turbo run build --filter=api",
+    "build": "turbo run build --parallel",
+    "lint": "eslint 'apps/**/*.{ts,tsx,js,jsx}' 'packages/**/*.{ts,tsx,js,jsx}' --ext .ts,.tsx,.js,.jsx",
+    "lint:fix": "eslint 'apps/**/*.{ts,tsx,js,jsx}' 'packages/**/*.{ts,tsx,js,jsx}' --ext .ts,.tsx,.js,.jsx --fix"
   },
   "repository": {
     "type": "git",
@@ -27,6 +32,14 @@
   "homepage": "https://github.com/Raniaaloun/hive#readme",
   "description": "",
   "devDependencies": {
-    "turbo": "^2.5.0"
+    "@types/node": "^22.15.2",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-prettier": "^8.0.0",
+    "eslint-plugin-prettier": "^5.2.6",
+    "prettier": "^3.5.3",
+    "turbo": "^2.5.0",
+    "typescript": "^5.1.6"
   }
 }

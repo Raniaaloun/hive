@@ -22,9 +22,9 @@ interface APIContextType {
   error: Error | null;
   fetchPosts: () => Promise<void>;
   fetchPostById: (id: string) => Promise<Post | null>;
-  createPost: (post: Omit<Post, "id">, token: string) => Promise<void>;
-  updatePost: (id: number, post: Partial<Post>, token: string) => Promise<void>;
-  deletePost: (id: number, token: string) => Promise<void>;
+  createPost: (post: Omit<Post, "id" | "userId">, token: string) => Promise<void>;
+  updatePost: (id: string, post: Partial<Post>, token: string) => Promise<void>;
+  deletePost: (id: string, token: string) => Promise<void>;
   isLoading: boolean;
 }
 
@@ -73,7 +73,7 @@ export function APIProvider({ children }: { children: ReactNode }) {
       setIsLoading(true);
       console.log('id: ', id);
 
-      const response = await fetch(`${apiUrl}/posts/${id}`); // No need for Number(id)
+      const response = await fetch(`${apiUrl}/posts/${id}`);
 
       console.log('response: ', response);
 
@@ -123,7 +123,7 @@ export function APIProvider({ children }: { children: ReactNode }) {
   );
 
   const updatePost = useCallback(
-    async (id: number, updatedFields: Partial<Post>, token: string) => {
+    async (id: string, updatedFields: Partial<Post>, token: string) => {
       try {
         setIsLoading(true);
         const response = await fetch(`${apiUrl}/posts/${id}`, {
@@ -151,7 +151,7 @@ export function APIProvider({ children }: { children: ReactNode }) {
   );
 
   const deletePost = useCallback(
-    async (id: number, token: string) => {
+    async (id: string, token: string) => {
       try {
         setIsLoading(true);
         const response = await fetch(`${apiUrl}/posts/${id}`, {
