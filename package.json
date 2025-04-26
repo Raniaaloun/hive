@@ -10,7 +10,9 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:web": "turbo run dev --filter=web"
+    "dev:web": "turbo run dev --filter=web",
+    "dev:api": "turbo run dev --filter=api",
+    "dev": "turbo run dev --parallel"
   },
   "repository": {
     "type": "git",
