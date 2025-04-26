@@ -2,8 +2,16 @@ import express from 'express';
 import * as trpcExpress from '@trpc/server/adapters/express';
 import { appRouter } from './trpc/app-router';
 import postRoutes from './server/routes/post-routes'
+import cors from "cors";
 
 const app = express();
+
+app.use(
+  cors({
+    origin: "http://localhost:3000", // your frontend URL
+    credentials: true, // if you need to send cookies/auth
+  })
+);
 
 app.use(express.json());
 

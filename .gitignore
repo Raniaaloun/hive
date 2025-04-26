@@ -31,6 +31,9 @@ turbo/
 .next/
 .cache/
 
+.turbo/
+cookies
+
 # Coverage
 coverage/
 

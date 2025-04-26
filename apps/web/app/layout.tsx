@@ -1,10 +1,12 @@
 import Navbar from "@/components/navbar";
 import "./globals.css";
 import { AuthProvider } from "@/context/auth-provider";
+import { APIProvider } from "@/context/api-provider";
+import ContentLayout from "@/components/content-layout";
 
 export const metadata = {
-  title: 'The Hive',
-  description: 'Blogging platform',
+  title: "The Hive",
+  description: "Blogging platform",
 };
 
 export default function RootLayout({
@@ -15,12 +17,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-      <AuthProvider>
-      <Navbar />
-      <main>
-        {children}
-      </main>
-      </AuthProvider>
+        <AuthProvider>
+          <APIProvider>
+            <Navbar />
+            <ContentLayout>{children}</ContentLayout>
+          </APIProvider>
+        </AuthProvider>
       </body>
     </html>
   );

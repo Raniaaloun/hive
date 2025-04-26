@@ -15,7 +15,9 @@ const AuthContext = createContext<AuthContextType>({
   keycloak: keycloakClient,
 });
 
-export const useAuth = () => useContext(AuthContext);
+
+AuthContext.displayName = "AuthContext";
+
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -32,3 +34,5 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     </AuthContext.Provider>
   );
 };
+
+export const useAuth = () => useContext(AuthContext);
