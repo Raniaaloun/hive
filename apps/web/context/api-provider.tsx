@@ -11,7 +11,7 @@ import React, {
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 interface Post {
-  id: number;
+  id: string;
   title: string;
   content: string;
   userId?: string;
@@ -21,6 +21,7 @@ interface APIContextType {
   posts: Post[];
   error: Error | null;
   fetchPosts: () => Promise<void>;
+  fetchPostById: (id: string) => Promise<Post | null>;
   createPost: (post: Omit<Post, "id">, token: string) => Promise<void>;
   updatePost: (id: number, post: Partial<Post>, token: string) => Promise<void>;
   deletePost: (id: number, token: string) => Promise<void>;
@@ -31,11 +32,15 @@ const APIContext = createContext<APIContextType>({
   posts: [],
   error: null,
   fetchPosts: async () => {},
+  fetchPostById: async (): Promise<Post | null> => {
+    return null;
+  },
   createPost: async () => {},
   updatePost: async () => {},
   deletePost: async () => {},
   isLoading: false,
 });
+
 
 APIContext.displayName = "APIContext";
 
@@ -62,6 +67,32 @@ export function APIProvider({ children }: { children: ReactNode }) {
       setIsLoading(false);
     }
   }, []);
+
+  const fetchPostById = useCallback(async (id: string): Promise<Post | null> => {
+    try {
+      setIsLoading(true);
+      console.log('id: ', id);
+
+      const response = await fetch(`${apiUrl}/posts/${id}`); // No need for Number(id)
+
+      console.log('response: ', response);
+
+      if (!response.ok) {
+        throw new Error(`${response.status} - Error fetching post by ID.`);
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (err) {
+      setError(err as Error);
+      console.error("Error fetching post by ID:", err);
+      return null;
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+
 
   const createPost = useCallback(
     async (post: Omit<Post, "id">, token: string) => {
@@ -151,6 +182,7 @@ export function APIProvider({ children }: { children: ReactNode }) {
         posts,
         error,
         fetchPosts,
+        fetchPostById,
         createPost,
         updatePost,
         deletePost,

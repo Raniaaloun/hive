@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useRouter } from "next/navigation";
 import {
   Body,
   Card,
@@ -34,6 +35,7 @@ const PostCard: React.FC<PostCardProps> = ({
   onDelete,
   canEditOrDelete
 }) => {
+  const router = useRouter();
 
   if (loading) {
     return (
@@ -52,8 +54,14 @@ const PostCard: React.FC<PostCardProps> = ({
     );
   }
 
+  const handleCardClick = () => {
+    if (id) {
+      router.push(`/posts/${id}`);
+    }
+  };
+
   return (
-    <Card>
+    <Card onClick={handleCardClick} style={{ cursor: "pointer" }}>
       <Header>
         <Info>
           <span>User #{userId}</span>
@@ -64,7 +72,7 @@ const PostCard: React.FC<PostCardProps> = ({
       <Body>{content}</Body>
 
       {canEditOrDelete && (
-        <ButtonGroup>
+        <ButtonGroup onClick={(e) => e.stopPropagation()}>
           <EditButton onClick={onEdit}>Edit</EditButton>
           <DeleteButton onClick={onDelete}>Delete</DeleteButton>
         </ButtonGroup>

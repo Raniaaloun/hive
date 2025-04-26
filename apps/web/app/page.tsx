@@ -6,12 +6,14 @@ import PostCard from "@/components/post-card";
 import { useAPIContext } from "@/context/api-provider";
 import { useAuth } from "@/context/auth-provider";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const { isLoading, fetchPosts, posts, deletePost } = useAPIContext();
   const { isAuthenticated, keycloak } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [postToEdit, setPostToEdit] = useState<Post | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     fetchPosts();
@@ -44,9 +46,13 @@ export default function Home() {
     }
   };
 
+  const handleCardClick = (postId: number) => {
+    router.push(`/post/${postId}`);
+  };
+
   return (
     <div>
-      <h1>Welcome to The Hive 🐝 </h1>
+      <h1>Welcome to The Hive 🐝</h1>
       {isAuthenticated && <CreatePostButton onClick={handleModalOpen} />}
       {isModalOpen && <Modal onClose={handleModalClose} postToEdit={postToEdit} />}
 
@@ -62,6 +68,7 @@ export default function Home() {
             onEdit={() => handleEdit(id)}
             onDelete={() => handleDelete(id)}
             canEditOrDelete={keycloak?.subject === userId}
+            onCardClick={() => handleCardClick(id)}
           />
         ))}
     </div>
