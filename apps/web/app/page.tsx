@@ -28,7 +28,7 @@ export default function Home() {
     setIsModalOpen(true);
   };
 
-  const handleEdit = (postId: number) => {
+  const handleEdit = (postId: string) => {
     const post = posts.find((post) => post.id === postId);
     if (post) {
       setPostToEdit(post);
@@ -36,7 +36,7 @@ export default function Home() {
     }
   };
 
-  const handleDelete = async (postId: number) => {
+  const handleDelete = async (postId: string) => {
     if (!keycloak.token) return;
     try {
       await deletePost(postId, keycloak.token);
@@ -46,8 +46,8 @@ export default function Home() {
     }
   };
 
-  const handleCardClick = (postId: number) => {
-    router.push(`/post/${postId}`);
+  const handleCardClick = (postId: string) => {
+    router.push(`/posts/${postId}`);
   };
 
   return (

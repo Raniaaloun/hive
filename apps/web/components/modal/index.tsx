@@ -9,7 +9,7 @@ interface ModalProps {
 
 // TODO: Move to shared
 export interface Post {
-  id: number;
+  id: string;
   title: string;
   content: string;
   userId?: string;

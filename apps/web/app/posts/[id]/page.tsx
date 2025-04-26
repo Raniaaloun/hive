@@ -5,8 +5,8 @@ import { useParams } from "next/navigation";
 import { useAPIContext } from "@/context/api-provider";
 
 interface Post {
-  id: number | string;
-  userId: string;
+  id: string;
+  userId?: string;
   title: string;
   content: string;
 }
@@ -40,7 +40,6 @@ export default function PostDetail() {
     return (
       <div>
         <h2>Post not found</h2>
-        <a href="/posts">Go Back</a>
       </div>
     );
   }
