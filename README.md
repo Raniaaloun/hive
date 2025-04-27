@@ -1,8 +1,8 @@
 # Hive Blogging Platform
 
-The **Hive** platform is a full-stack blogging application built using **Next.js** for the frontend and **Node.js/Express** for the backend. The app utilizes **Sequelize** for database management with PostgreSQL, **Zod** for API data validation, and **Keycloak** for user authentication. Backend routes are structured with **tRPC** for type-safe API development, and the entire project is written in **TypeScript** to maintain consistent typing.
+The **Hive** platform is a full-stack blogging application built using **Next.js** for the frontend and **Node.js/Express** for the backend. The app uses **Sequelize** for database management with PostgreSQL, **Zod** for API data validation, and **Keycloak** for user authentication. Backend routes are structured with **tRPC** for type-safe API development, and the entire project is written in **TypeScript** to maintain consistent typing.
 
-The project is organized as a **monorepo** using **TurboRepo**, with both the frontend and backend in the same repository but managed separately.
+This project is organized as a **monorepo** using **TurboRepo**, with both the frontend and backend in the same repository but managed separately.
 
 ## Tech Stack
 
