@@ -9,7 +9,7 @@ import {
   MenuItem
 } from './styles';
 
-export default function Dropdown() {
+const Dropdown: React.FC = () => {
   const { keycloak } = useAuth();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -43,4 +43,6 @@ export default function Dropdown() {
       )}
     </DropdownContainer>
   );
-}
+};
+
+export default Dropdown;

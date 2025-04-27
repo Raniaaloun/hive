@@ -1,17 +1,16 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { Button, NavbarContainer, Title } from './styles';
-import { useAuth } from '@/context/auth-provider';
-import Dropdown from '@/components/dropdown';
+import Link from "next/link";
+import { Button, NavbarContainer, Title } from "./styles";
+import { useAuth } from "@/context/auth-provider";
+import Dropdown from "@/components/dropdown";
 
-export default function Navbar() {
+const Navbar: React.FC = () => {
   const { isAuthenticated, keycloak } = useAuth();
 
   const handleLogin = () => {
     keycloak.login();
   };
-
 
   return (
     <NavbarContainer>
@@ -26,4 +25,6 @@ export default function Navbar() {
       )}
     </NavbarContainer>
   );
-}
+};
+
+export default Navbar;
