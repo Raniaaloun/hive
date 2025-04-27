@@ -71,11 +71,8 @@ export function APIProvider({ children }: { children: ReactNode }) {
   const fetchPostById = useCallback(async (id: string): Promise<Post | null> => {
     try {
       setIsLoading(true);
-      console.log('id: ', id);
 
       const response = await fetch(`${apiUrl}/posts/${id}`);
-
-      console.log('response: ', response);
 
       if (!response.ok) {
         throw new Error(`${response.status} - Error fetching post by ID.`);
