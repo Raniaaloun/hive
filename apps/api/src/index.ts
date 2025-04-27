@@ -8,8 +8,8 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:3000", // your frontend URL
-    credentials: true, // if you need to send cookies/auth
+    origin: "http://localhost:3000",
+    credentials: true,
   })
 );
 
