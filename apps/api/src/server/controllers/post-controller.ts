@@ -33,7 +33,7 @@ export const getPostById = async (req: Request, res: Response, next: NextFunctio
     }
     res.status(200).json(post);
   } catch (error: any) {
-    next(error); // Pass error to the global error handler
+    next(error);
   }
 };
 
